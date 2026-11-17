@@ -1,0 +1,6 @@
+{
+  "name": "CMB XPRESS.LK",
+  "description": "CMB XPRESS.LK — International Courier, Import & Export Logistics Partner connecting Sri Lanka with 150+ global destinations, powered by Buzzard Logistics (Pvt) Ltd.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

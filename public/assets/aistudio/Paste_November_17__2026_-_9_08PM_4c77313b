@@ -1,0 +1,1159 @@
+# CMB XPRESS.LK — COMPLETE BRAND IDENTITY, OFFICIAL LOGO, FOOTER INTEGRATION & WEBSITE-WIDE IMPLEMENTATION
+
+PROJECT: CMB XPRESS.LK
+OFFICIAL WEBSITE: https://www.cmbxpress.lk/
+PARENT COMPANY: Buzzard Logistics (Pvt) Ltd
+COUNTRY: Sri Lanka
+
+============================================================
+ROLE AND PROFESSIONAL RESPONSIBILITY
+============================================================
+
+Act as a complete senior website development team consisting of:
+
+1. Senior React and TypeScript Developer.
+2. Full-stack Web Application Architect.
+3. Premium Corporate UI/UX Designer.
+4. International Logistics Website Specialist.
+5. Brand Identity and Digital Experience Designer.
+6. Motion Graphics and Animation Developer.
+7. SEO and Performance Engineer.
+8. Website Accessibility Specialist.
+9. Quality Assurance Engineer.
+
+Your task is to inspect, improve, integrate and professionally complete the EXISTING CMB XPRESS.LK website project.
+
+This is an existing company with an established brand identity, official logo, website, services, customers and contact information.
+
+Do not treat this as a fictional startup.
+
+Do not create a fictional company.
+
+Do not replace the company identity.
+
+Do not start an unrelated blank project.
+
+You must understand the existing business, preserve its established identity, improve its digital experience and implement the supplied components correctly.
+
+============================================================
+1. OFFICIAL COMPANY IDENTITY
+============================================================
+
+COMPANY NAME:
+CMB XPRESS.LK
+
+OFFICIAL WEBSITE:
+https://www.cmbxpress.lk/
+
+OFFICIAL TAGLINE:
+INTERNATIONAL COURIER PARTNER
+
+PARENT COMPANY:
+Buzzard Logistics (Pvt) Ltd
+
+BUSINESS CATEGORY:
+International Courier and Logistics Solutions.
+
+COUNTRY:
+Sri Lanka.
+
+PRIMARY BUSINESS MARKET:
+Sri Lanka.
+
+BUSINESS POSITIONING:
+An international courier and logistics partner connecting Sri Lanka with global destinations and helping individuals and businesses manage import and export shipments.
+
+OFFICIAL PUBLIC CONTACT DETAILS:
+
+Telephone:
++94 77 011 7364
+
+WhatsApp:
++94 77 011 7364
+
+WhatsApp URL:
+https://wa.me/94770117364
+
+Public Email:
+info@cmbxpress.lk
+
+Website:
+https://www.cmbxpress.lk/
+
+Office Address:
+727/5 Ratnayake Garden,
+Wattala,
+Sri Lanka.
+
+Google Maps:
+Use the configured Wattala business address to generate the maps destination.
+
+IMPORTANT CONTACT RULES:
+
+- Use only +94 77 011 7364 as the public phone number.
+- Use info@cmbxpress.lk as the public email.
+- Remove the old secondary number +94 72 902 2673 from public website components.
+- Remove support@cmbxpress.lk and any example email addresses.
+- Never invent alternative telephone numbers.
+- Keep all business contact information in one configuration file.
+
+============================================================
+2. OFFICIAL LOGO — MOST IMPORTANT BRAND REQUIREMENT
+============================================================
+
+I have attached the official CMB XPRESS.LK logo.
+
+The attached image is the authoritative company identity reference.
+
+The logo contains the following visual elements:
+
+- A black international globe.
+- An aircraft / paper-plane-inspired symbol.
+- Horizontal speed lines.
+- Large crimson CMB lettering.
+- Bold black XPRESS lettering.
+- Crimson .LK lettering.
+- The tagline INTERNATIONAL COURIER PARTNER.
+
+The logo represents:
+- International connectivity.
+- Express transportation.
+- Worldwide courier operations.
+- Speed.
+- Professional logistics.
+- Sri Lankan business identity.
+
+MANDATORY LOGO PROTECTION:
+
+1. Use the exact supplied logo image.
+2. Never generate a replacement logo.
+3. Never redesign the globe.
+4. Never alter the airplane symbol.
+5. Never change the lettering.
+6. Never recolour the logo.
+7. Never stretch or distort it.
+8. Never replace it with a text-only wordmark.
+9. Never use a different company's logo.
+10. Never cover or crop important logo elements.
+
+Create a brand asset location:
+
+src/assets/brand/cmb-xpress-logo.jpg
+
+Use the actual uploaded logo as the source. If a different file format is supplied, preserve the supplied original format or use a properly converted copy without altering its appearance.
+
+IMPORTANT BACKGROUND DETAIL:
+
+The supplied logo is a JPG with a white background, not a transparent logo.
+
+Therefore:
+- Use it on white or off-white surfaces.
+- Use object-fit: contain.
+- Maintain its original aspect ratio.
+- On black footer backgrounds, place it inside a neat white logo panel with suitable padding.
+- Do not remove its white background automatically.
+- Do not apply CSS filters to change its appearance.
+- Do not make a fake transparent version.
+
+Create one reusable logo component:
+
+src/components/BrandLogo.tsx
+
+Support reasonable display sizes for:
+- Desktop header.
+- Mobile navigation.
+- Footer.
+- About page.
+- Contact page.
+
+The logo must always look consistent throughout the website.
+
+============================================================
+3. OFFICIAL BRAND DESIGN SYSTEM
+============================================================
+
+The visual identity must be built around the original logo.
+
+BRAND COLOURS:
+
+Primary crimson:
+#B5121B
+
+Black:
+#111111
+
+Gold:
+#D4AF37
+
+Off-white:
+#F8F8F8
+
+White:
+#FFFFFF
+
+DESIGN RULES:
+
+Crimson:
+Primary buttons, logo-related highlights, important CTA elements and selected branding details.
+
+Black:
+Premium backgrounds, headings, footer areas and strong visual contrasts.
+
+White:
+Main content, logo backgrounds and readable sections.
+
+Off-white:
+Soft section backgrounds and visual separation.
+
+Gold:
+Secondary premium accent, selected highlights and seasonal decorative details.
+
+Gold is an optional website accent, not a reason to change the original logo.
+
+TYPOGRAPHY:
+
+Use a professional modern typography system.
+
+Preferred:
+- Manrope or Plus Jakarta Sans for headings.
+- Inter for body copy.
+
+Use strong headline hierarchy, balanced spacing, readable paragraphs and controlled font sizes.
+
+Visual direction:
+
+- International corporate.
+- Premium.
+- Modern.
+- Clean.
+- Trustworthy.
+- Human.
+- Professional.
+- Global logistics.
+
+Avoid:
+- Generic courier website templates.
+- Excessive rounded rectangles.
+- Unnecessary gradients.
+- Cheap stock website aesthetics.
+- Excessive glassmorphism.
+- Overloaded animations.
+- Random use of blue.
+- Inconsistent colours.
+- AI-looking logos.
+
+Benchmark the quality and professionalism of leading international courier and freight websites, but retain a unique CMB XPRESS.LK identity.
+
+============================================================
+4. EXISTING WEBSITE — MANDATORY INSPECTION
+============================================================
+
+Before changing anything, inspect the existing public website:
+
+https://www.cmbxpress.lk/
+
+Visit and examine all available relevant pages, including:
+
+Homepage:
+https://www.cmbxpress.lk/
+
+About:
+https://www.cmbxpress.lk/about
+
+Review available service pages and their existing content.
+
+Examine:
+- Existing homepage design.
+- Existing navigation.
+- Existing company introduction.
+- Existing services.
+- Existing website images.
+- Existing FAQ content.
+- Existing customer testimonials.
+- Existing footer.
+- Existing contact information.
+- Existing page routes.
+- Existing tracking functionality.
+- Existing forms.
+- Existing website responsiveness.
+
+Use the live website as a reference for existing business information and historical content.
+
+IMPORTANT:
+
+Do not assume that every existing website statement is accurate or currently operational.
+
+The current website contains duplicated hero content, old contact information, placeholder email content, generic blog descriptions and unverified performance claims.
+
+Do not reproduce those weaknesses.
+
+PRESERVE:
+- Established company identity.
+- Genuine business service information.
+- Correct public contact information.
+- Useful service descriptions.
+- Genuine customer feedback, once verified.
+- Existing working functionality.
+- Relevant existing page routes.
+
+IMPROVE:
+- Page structure.
+- Visual design.
+- Typography.
+- User navigation.
+- Brand consistency.
+- Import and export journeys.
+- Footer.
+- Quote enquiries.
+- Responsive performance.
+- Website animations.
+
+Do not overwrite the existing website simply because a redesigned version would look different.
+
+Make changes within the current application.
+
+============================================================
+5. COMPLETE BUSINESS SERVICE IDENTITY
+============================================================
+
+CMB XPRESS.LK operates around two primary commercial directions.
+
+A. EXPORT FROM SRI LANKA TO THE WORLD.
+
+B. IMPORT FROM INTERNATIONAL ORIGINS INTO SRI LANKA.
+
+Both directions must be visible throughout the website.
+
+--------------------------------
+A. EXPORT SERVICES
+--------------------------------
+
+International courier from Sri Lanka.
+
+Services include:
+
+- International courier.
+- International express shipments.
+- Personal parcel shipping.
+- Documents.
+- Gifts.
+- Suitable personal items.
+- Air export cargo.
+- Commercial shipments.
+- Bulk business shipments.
+- E-commerce logistics.
+- Packaging assistance.
+- Customs and export documentation support.
+
+Main destination markets:
+
+- United Kingdom.
+- United States.
+- Canada.
+- Europe.
+- Australia.
+- New Zealand.
+- Japan.
+- South Korea.
+- Middle East.
+
+Use the existing website's published 150+ destination claim as a configurable figure, subject to current service availability.
+
+Do not automatically replace it with an unverified larger number.
+
+The three existing service levels are:
+
+EXPRESS:
+Published indicative estimate: 3–5 business days.
+
+STANDARD:
+Published indicative estimate: 5–10 business days.
+
+ECONOMY:
+Published indicative estimate: 7–14 business days.
+
+Retain these estimates only with an appropriate disclaimer and business approval. Actual timelines depend on destination, service availability, customs and operational conditions.
+
+--------------------------------
+B. IMPORT SERVICES
+--------------------------------
+
+Import cargo into Sri Lanka from overseas suppliers.
+
+Primary import origins:
+
+CHINA:
+Main import focus.
+
+THAILAND:
+Additional import market.
+
+China-to-Sri Lanka service:
+
+- Air cargo transportation.
+- Eligible supplier collection in China.
+- Cargo receiving.
+- Consolidation where applicable.
+- Customs clearance support.
+- Duty-paid options for eligible shipments.
+- Delivery in Sri Lanka.
+
+Thailand-to-Sri Lanka:
+
+- International air cargo.
+- Cargo handling.
+- Import documentation assistance.
+- Customs clearance support.
+- Delivery arrangements.
+
+Important:
+China air cargo is not sea freight.
+
+Sea freight/FCL must be displayed as a completely separate shipping service.
+
+Never mix the descriptions of air cargo and FCL.
+
+--------------------------------
+C. SEA FREIGHT / FCL
+--------------------------------
+
+Present as a separate business service.
+
+Include:
+- Full Container Load (FCL) shipping.
+- Sea freight quotations.
+- Cargo information collection.
+- Import documentation support.
+- Clearance coordination.
+- Delivery arrangements.
+
+Never invent container availability, prices, discounts or transit schedules.
+
+--------------------------------
+D. BUSINESS AND E-COMMERCE LOGISTICS
+--------------------------------
+
+Target:
+- Online sellers.
+- SMEs.
+- Importers.
+- Exporters.
+- Retailers.
+- Entrepreneurs.
+- Commercial businesses.
+
+Explain how CMB XPRESS.LK helps businesses move goods internationally.
+
+============================================================
+6. WEBSITE STRUCTURE AND EXISTING ROUTES
+============================================================
+
+Inspect the current React Router structure and preserve working routes.
+
+Required website pages:
+
+/
+ /about
+ /services
+ /export
+ /import
+ /international-courier
+ /business-logistics
+ /sea-freight
+ /quote
+ /track
+ /faq
+ /contact
+ /privacy-policy
+ /terms
+
+Do not generate duplicate pages where they already exist.
+
+Do not delete working routes.
+
+Ensure:
+- All routes load successfully.
+- Navigation links point to valid pages.
+- Browser back and forward work.
+- Page refresh does not cause broken route errors.
+- Every public page has the correct shared header and footer.
+
+Import anchors:
+
+/import#china
+/import#thailand
+
+Create matching section IDs if missing.
+
+Quotation links:
+
+/quote?direction=export
+
+/quote?direction=import
+
+Preserve query-string behaviour.
+
+============================================================
+7. HEADER AND OFFICIAL BRAND LOGO INTEGRATION
+============================================================
+
+Inspect the current website header.
+
+Integrate the official CMB XPRESS.LK logo in place of any temporary generated wordmark.
+
+Desktop:
+- Logo on left.
+- Navigation in the centre.
+- WhatsApp and quotation CTA on right.
+
+Navigation:
+Home
+About
+Services
+Export
+Import
+Business Logistics
+Contact
+
+Create accessible dropdown navigation if useful.
+
+Mobile:
+- Correct logo sizing.
+- Clean menu button.
+- Slide-out navigation.
+- Contact CTA.
+- No horizontal overflow.
+
+The header should:
+- Use a clear background at the top.
+- Transition smoothly on scrolling.
+- Remain readable against all backgrounds.
+- Use the original logo exactly.
+
+Do not duplicate the header across individual pages.
+
+============================================================
+8. SITE FOOTER — REPLACE AND INTEGRATE
+============================================================
+
+A complete React TypeScript footer component named SiteFooter.tsx has been supplied as a separate project asset or source file.
+
+Use that supplied component as the implementation reference.
+
+EXPECTED FILE:
+
+src/components/SiteFooter.tsx
+
+IMPORTANT:
+
+Do not convert the TSX component into static HTML.
+
+Do not delete its navigation functionality.
+
+Preserve the following:
+- React Router Link.
+- Lucide React icons.
+- companyConfig integration.
+- Brand logo component.
+- Responsive Tailwind classes.
+- Export navigation.
+- Import navigation.
+- Contact links.
+- Social media configuration.
+- Copyright year functionality.
+- Legal links.
+- Quotation CTA.
+
+Review the supplied file carefully before modification.
+
+Correct compilation errors if present.
+
+Do not use invented imports.
+
+Do not assume a BrandWordmark component exists without checking the project.
+
+Use the actual official BrandLogo component and preserve compatibility where possible.
+
+Create the footer if it does not already exist.
+
+--------------------------------
+FOOTER DESIGN
+--------------------------------
+
+Use:
+- Black background.
+- Crimson accent.
+- Gold highlights.
+- Original logo on a white panel.
+- Premium typography.
+- Clear content hierarchy.
+
+Include five functional content groups:
+
+1. Brand identity and company description.
+2. Export services.
+3. Import solutions.
+4. Contact information.
+5. Secondary navigation and legal details.
+
+Add a top conversion section:
+
+"Ready to Move Your Shipment?"
+
+Buttons:
+- Get a Free Quote.
+- Chat on WhatsApp.
+
+Company details:
+
+CMB XPRESS.LK
+
+Buzzard Logistics (Pvt) Ltd
+
++94 77 011 7364
+
+info@cmbxpress.lk
+
+727/5 Ratnayake Garden, Wattala, Sri Lanka.
+
+Export links:
+
+- Export From Sri Lanka.
+- International Courier.
+- Business & E-Commerce.
+- Export Quotation.
+
+Import links:
+
+- China to Sri Lanka Air Cargo.
+- Thailand to Sri Lanka Imports.
+- Sea Freight / FCL.
+- Import Quotation.
+
+Company links:
+
+- About.
+- Services.
+- Track Shipment Assistance.
+- FAQ.
+- Contact.
+- Privacy Policy.
+- Terms & Conditions.
+
+Social media:
+
+Provide configurable Facebook, Instagram, LinkedIn and TikTok destinations.
+
+Only show actual verified URLs.
+
+Do not invent social URLs.
+
+--------------------------------
+FOOTER INTEGRATION LOCATION
+--------------------------------
+
+Inspect the existing application layout.
+
+Integrate the footer into the shared public layout after the page content.
+
+Example architecture:
+
+SiteHeader
+Main page content / Outlet
+SiteFooter
+Floating WhatsApp Button
+
+Ensure every public page has exactly one footer.
+
+Do not duplicate the header, footer or floating WhatsApp button.
+
+============================================================
+9. COMPANY CONFIGURATION
+============================================================
+
+Inspect:
+
+src/config/companyConfig.ts
+
+Use the current configuration architecture.
+
+Ensure these settings exist:
+
+companyName: CMB XPRESS.LK
+
+parentCompany: Buzzard Logistics (Pvt) Ltd
+
+website: https://www.cmbxpress.lk
+
+phone: +94 77 011 7364
+
+whatsappUrl: https://wa.me/94770117364
+
+email: info@cmbxpress.lk
+
+address: 727/5 Ratnayake Garden, Wattala, Sri Lanka
+
+internationalCoverageCount: 150
+
+googleMapsUrl: Configured Wattala map destination.
+
+socialLinks: Configurable verified social profiles.
+
+exportDestinations: Configurable list.
+
+importOrigins:
+- China.
+- Thailand.
+
+brandColors:
+- Crimson.
+- Black.
+- Gold.
+- Off-white.
+- White.
+
+Do not overwrite other fields used by the existing project.
+
+Do not hardcode duplicate contact information across components.
+
+All components should read company data from the central configuration.
+
+============================================================
+10. CHRISTMAS 2026 SEASONAL BRANDING
+============================================================
+
+The previous design direction includes a premium Christmas 2026 campaign.
+
+Retain that idea as a seasonal presentation layer.
+
+Christmas campaign headline:
+
+"Make This Christmas Cross Every Border."
+
+Supporting line:
+
+"From Sri Lanka to the World. Delivering Happiness Across Borders."
+
+Use subtle:
+- Crimson and gold festive details.
+- Premium parcels.
+- International route visuals.
+- Soft light effects.
+- Restrained snowfall.
+- Tasteful seasonal imagery.
+
+Avoid:
+- Cartoon Christmas graphics.
+- Excessive decorations.
+- Unprofessional typography.
+- Heavy animations.
+- Changing the official logo.
+- Changing the basic corporate brand identity.
+
+Christmas must be configurable and switchable.
+
+Do not make Christmas decorations permanent throughout the year.
+
+============================================================
+11. VISUAL CONSISTENCY ACROSS ALL PAGES
+============================================================
+
+The following must use the same identity:
+
+- Website header.
+- Homepage.
+- About page.
+- Export page.
+- Import page.
+- Service pages.
+- Quote form.
+- Tracking page.
+- Contact page.
+- FAQ page.
+- Footer.
+- Loading states.
+- Error states.
+- Mobile navigation.
+
+Use reusable design tokens and components.
+
+Never create a separate unrelated brand style on individual pages.
+
+============================================================
+12. CONTACT AND WHATSAPP FUNCTIONALITY
+============================================================
+
+Telephone:
+
+tel:+94770117364
+
+Email:
+
+mailto:info@cmbxpress.lk
+
+WhatsApp:
+
+https://wa.me/94770117364
+
+Google Maps:
+
+Use the official Wattala address.
+
+All buttons must perform real actions.
+
+WhatsApp quote messages should include available information from the quotation form:
+
+- Customer name.
+- Import or export direction.
+- Cargo type.
+- Origin.
+- Destination.
+- Estimated weight.
+- Contact number.
+
+URL-encode the WhatsApp text correctly.
+
+Do not claim a quotation was submitted to a server if only a WhatsApp redirect occurred.
+
+============================================================
+13. EXISTING TRACKING SYSTEM
+============================================================
+
+Inspect the current project to determine whether a genuine tracking provider or tracking backend already exists.
+
+If an existing integration is functional:
+- Preserve it.
+- Test it.
+- Maintain its connection.
+
+If no genuine backend exists:
+- Do not fabricate live tracking.
+- Do not invent tracking statuses.
+- Do not invent package locations.
+- Provide tracking assistance via WhatsApp.
+
+Create an integration-ready architecture for connecting a proper tracking service in the future.
+
+============================================================
+14. QUOTATION SYSTEM
+============================================================
+
+Inspect the existing quotation form.
+
+Do not delete a functioning form.
+
+Improve it where necessary.
+
+Support:
+- Export from Sri Lanka.
+- Import to Sri Lanka.
+- International courier.
+- Air cargo.
+- Sea freight / FCL.
+- China import.
+- Thailand import.
+
+Collect:
+- Customer details.
+- Shipping direction.
+- Origin.
+- Destination.
+- Cargo category.
+- Cargo description.
+- Package count.
+- Estimated weight.
+- Additional information.
+
+Validate the form.
+
+Provide a review step.
+
+Generate an accurate WhatsApp enquiry message.
+
+If a backend already exists, preserve and test it.
+
+If no backend exists, do not pretend that one has been integrated.
+
+Keep all sensitive credentials on the server side.
+
+============================================================
+15. ANIMATION AND INTERACTIONS
+============================================================
+
+Keep the previously requested premium animated website feel.
+
+Use:
+- Smooth navigation transitions.
+- Scroll reveals.
+- Controlled image motion.
+- Animated global route illustrations.
+- Interactive service cards.
+- CTA hover transitions.
+- Seasonal visual effects.
+
+Animations must not:
+- Break functionality.
+- Make the site slow.
+- Block navigation.
+- Create layout shifts.
+- Interfere with form submissions.
+
+Respect reduced-motion preferences.
+
+============================================================
+16. RESPONSIVE QUALITY
+============================================================
+
+Test the website at:
+
+360px
+390px
+430px
+768px
+1024px
+1440px
+1920px
+
+Check:
+- Official logo dimensions.
+- Header alignment.
+- Footer layout.
+- Mobile navigation.
+- Typography.
+- Contact information.
+- Quote forms.
+- Buttons.
+- Images.
+- Horizontal overflow.
+
+Everything must remain usable on smartphones.
+
+============================================================
+17. SEO AND DOMAIN IDENTITY
+============================================================
+
+Use the official website identity:
+
+https://www.cmbxpress.lk/
+
+Recommended homepage title:
+
+CMB XPRESS.LK | International Courier, Import & Export Sri Lanka
+
+Recommended description:
+
+CMB XPRESS.LK connects Sri Lanka with international destinations through courier, air cargo, import, export and business logistics services. Contact our team for a shipping quotation.
+
+Use consistent canonical URLs and verify the actual domain redirect behaviour before publishing.
+
+Add:
+- Unique page titles.
+- Meta descriptions.
+- Open Graph data.
+- Semantic headings.
+- Structured organisation information.
+- Sitemap.
+- robots.txt.
+- Accessible alt text.
+- Internal links.
+
+Use accurate business details only.
+
+============================================================
+18. TECHNICAL SAFETY
+============================================================
+
+Inspect the existing stack.
+
+Expected technologies may include:
+
+- React.
+- TypeScript.
+- React Router.
+- Tailwind CSS.
+- Lucide React.
+- Existing motion libraries.
+
+Preserve the existing technical architecture.
+
+Do not install unnecessary dependencies.
+
+Do not replace working infrastructure without a clear reason.
+
+Check:
+- Component imports.
+- Missing modules.
+- TypeScript errors.
+- Unused imports.
+- React warnings.
+- Route errors.
+- Invalid asset paths.
+- Broken external URLs.
+- Console errors.
+
+Do not expose secret keys.
+
+Do not remove working application logic.
+
+============================================================
+19. WEBSITE-WIDE IMPLEMENTATION WORKFLOW
+============================================================
+
+PHASE 1 — FULL PROJECT INSPECTION
+
+Inspect all source folders, components, routes, assets and configuration.
+
+Identify the website's existing architecture.
+
+PHASE 2 — BRAND ASSET INTEGRATION
+
+Add the official supplied logo.
+
+Create the reusable BrandLogo component.
+
+Verify all logo placements.
+
+PHASE 3 — COMPANY CONFIGURATION
+
+Verify business information and central configuration.
+
+Remove old public contact details.
+
+PHASE 4 — HEADER
+
+Implement the official brand logo and consistent navigation.
+
+PHASE 5 — FOOTER
+
+Integrate the supplied complete SiteFooter.tsx component.
+
+Correct imports and types if required.
+
+Verify all links.
+
+PHASE 6 — WEBSITE-WIDE BRAND CONSISTENCY
+
+Ensure every public page uses the official logo and company identity.
+
+Preserve existing working content and services.
+
+PHASE 7 — SEASONAL DESIGN
+
+Retain the configurable Christmas theme.
+
+PHASE 8 — FUNCTIONAL TESTING
+
+Test every interaction and route.
+
+PHASE 9 — RESPONSIVE AND SEO REVIEW
+
+Verify all screen sizes and technical requirements.
+
+PHASE 10 — FINAL QA
+
+Run the application and fix the actual errors.
+
+============================================================
+20. FINAL QUALITY ASSURANCE
+============================================================
+
+OFFICIAL BRAND:
+[ ] Original logo is used.
+[ ] Logo is not distorted.
+[ ] Official tagline is preserved.
+[ ] Correct crimson and black identity.
+[ ] No fake wordmarks.
+
+BUSINESS INFORMATION:
+[ ] CMB XPRESS.LK spelling correct.
+[ ] Buzzard Logistics (Pvt) Ltd correct.
+[ ] Correct website.
+[ ] Correct WhatsApp.
+[ ] Correct phone.
+[ ] Correct public email.
+[ ] Correct Wattala address.
+
+WEBSITE:
+[ ] Homepage works.
+[ ] About page works.
+[ ] Services page works.
+[ ] Export page works.
+[ ] Import page works.
+[ ] China import section works.
+[ ] Thailand import section works.
+[ ] Sea freight page works.
+[ ] Quote form works.
+[ ] Tracking assistance works.
+[ ] Contact page works.
+[ ] FAQ works.
+[ ] Legal pages work.
+
+FOOTER:
+[ ] One footer on each public page.
+[ ] Correct logo.
+[ ] Correct contact information.
+[ ] Export links work.
+[ ] Import links work.
+[ ] Social destinations are verified.
+[ ] Google Maps opens correctly.
+[ ] WhatsApp opens correctly.
+[ ] Copyright year updates automatically.
+
+TECHNICAL:
+[ ] No TypeScript errors.
+[ ] No critical React errors.
+[ ] No broken images.
+[ ] No duplicate navigation.
+[ ] No invalid internal routes.
+[ ] No horizontal overflow.
+[ ] Mobile layout works.
+[ ] Responsive footer works.
+[ ] Reduced motion supported.
+
+============================================================
+21. FINAL DELIVERY REQUIREMENTS
+============================================================
+
+DO NOT STOP AFTER PROVIDING A PLAN.
+
+Implement the actual changes in the existing project.
+
+Do not generate an unrelated replacement website.
+
+Do not remove existing working functionality.
+
+After implementation, provide:
+
+1. Exact files inspected.
+2. Exact files modified.
+3. Logo integration status.
+4. Footer integration status.
+5. Header integration status.
+6. Website-wide brand consistency status.
+7. Routes verified.
+8. Contact links verified.
+9. Responsive test results.
+10. Outstanding issues.
+11. Any integrations requiring additional configuration.
+
+Be honest about any test you could not perform.
+
+FINAL CREATIVE DIRECTION:
+
+CMB XPRESS.LK must look like a credible international courier and logistics company with a strong Sri Lankan identity.
+
+The official original logo must remain the centre of the brand.
+
+The website must clearly communicate two major services:
+
+EXPORT:
+Sri Lanka to the World.
+
+IMPORT:
+International Suppliers to Sri Lanka.
+
+The site must look premium, modern, animated, trustworthy and commercially effective.
+
+Its design should be recognisable as CMB XPRESS.LK even without reading the company name.
+
+Start by inspecting the existing project, the supplied logo and the official website. Then implement the integration directly into the current codebase.
