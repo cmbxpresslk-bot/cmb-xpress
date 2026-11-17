@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MotionConfig } from 'motion/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PublicLayout } from './components/PublicLayout';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -66,6 +67,7 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <SpeedInsights />
     </MotionConfig>
   );
 }
