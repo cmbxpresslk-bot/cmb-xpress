@@ -1,716 +1,441 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
-  Anchor,
   ArrowRight,
-  Box,
-  CheckCircle2,
+  Check,
+  ChevronRight,
+  Clock3,
+  FileText,
+  Gift,
   Globe2,
   MessageCircle,
   Package,
-  PlaneLanding,
-  PlaneTakeoff,
+  Plane,
   ShieldCheck,
-  Sparkles,
+  Truck,
 } from 'lucide-react';
-import parcelLabelImg from '../assets/images/about-1.png';
-import courierHandoverImg from '../assets/images/about-2.png';
-import airCargoExportImg from '../assets/images/air_cargo_export_1794931379985.jpg';
-import courierDispatchHubImg from '../assets/images/courier_dispatch_hub_1794931381191.jpg';
-import importWarehouseImg from '../assets/images/import_warehouse_freight_1794931381438.jpg';
-import oceanFclPortImg from '../assets/images/ocean_fcl_port_1794931381536.jpg';
-import { BrandLogo } from '../components/BrandLogo';
-import { CountryFlag, getCountryCodeFromName } from '../components/CountryFlag';
-import { GlobalRouteMap } from '../components/GlobalRouteMap';
-import { GoogleReviewsSection } from '../components/GoogleReviewsSection';
 import { PageMeta } from '../components/PageMeta';
 import { SeasonalSnowfall } from '../components/SeasonalSnowfall';
-import { ServiceTierComparison } from '../components/ServiceTierComparison';
 import { buildWhatsAppLink, companyConfig } from '../config/companyConfig';
-import { coreServices, faqs } from '../data/siteContent';
+import parcelImage from '../assets/images/about-1.png';
+import handoverImage from '../assets/images/about-2.png';
+import exportImage from '../assets/images/air_cargo_export_1794931379985.jpg';
+import businessImage from '../assets/images/courier_dispatch_hub_1794931381191.jpg';
+import importImage from '../assets/images/import_warehouse_freight_1794931381438.jpg';
+
+const destinations = [
+  { flag: '🇬🇧', name: 'United Kingdom' },
+  { flag: '🇨🇦', name: 'Canada' },
+  { flag: '🇺🇸', name: 'United States' },
+  { flag: '🇦🇺', name: 'Australia' },
+  { flag: '🇳🇿', name: 'New Zealand' },
+  { flag: '🇫🇷', name: 'France' },
+  { flag: '🇮🇹', name: 'Italy' },
+  { flag: '🇯🇵', name: 'Japan' },
+];
+
+const services = [
+  {
+    title: 'International parcels',
+    description: 'Send personal packages to family, friends and customers overseas.',
+    image: parcelImage,
+    alt: 'Carefully packed parcels ready for courier dispatch',
+    icon: Package,
+    href: '/international-courier',
+  },
+  {
+    title: 'Documents & gifts',
+    description: 'Send important documents and suitable gifts from Sri Lanka.',
+    image: handoverImage,
+    alt: 'Courier parcel handover',
+    icon: FileText,
+    href: '/export',
+  },
+  {
+    title: 'Express courier',
+    description: 'Ask about priority international shipping for your destination.',
+    image: exportImage,
+    alt: 'International air cargo aircraft',
+    icon: Plane,
+    href: '/export',
+  },
+  {
+    title: 'Business shipments',
+    description: 'Courier and cargo support for regular business requirements.',
+    image: businessImage,
+    alt: 'Courier dispatch and logistics operations',
+    icon: Truck,
+    href: '/business-logistics',
+  },
+];
+
+const steps = [
+  { number: '01', title: 'Request a quote', copy: 'Share your destination and shipment details.', icon: FileText },
+  { number: '02', title: 'Confirm details', copy: 'Our team helps confirm the suitable option.', icon: Check },
+  { number: '03', title: 'Hand over your parcel', copy: 'Arrange the available handover or collection.', icon: Package },
+  { number: '04', title: 'Send it worldwide', copy: 'Your shipment begins its international journey.', icon: Globe2 },
+];
+
+const faqs = [
+  {
+    question: 'Which countries can I send parcels to?',
+    answer: 'We support international destinations including the UK, Canada, USA, Australia, Europe and other locations. Availability is confirmed when you request a quote.',
+  },
+  {
+    question: 'How do I get a courier quotation?',
+    answer: 'Share your destination, shipment type and approximate weight through our quote form or WhatsApp. Our team will help confirm the available service and rate.',
+  },
+  {
+    question: 'Can I send documents and gifts?',
+    answer: 'Yes, suitable documents, gifts and personal parcels can be quoted subject to destination rules and carrier restrictions.',
+  },
+  {
+    question: 'How can I get a shipment update?',
+    answer: 'Send your reference number to our WhatsApp team for tracking assistance. Live carrier tracking is available only where a supported tracking integration exists.',
+  },
+];
 
 export function HomePage() {
-  const [seasonalActive, setSeasonalActive] = useState<boolean>(
-    companyConfig.seasonalCampaign.enabled
-  );
-  const [mapFilter, setMapFilter] = useState<'both' | 'export' | 'import'>('both');
+  const seasonalEnabled = companyConfig.seasonalCampaign.enabled;
 
   return (
     <>
       <PageMeta
-        title="CMB XPRESS.LK | International Courier, Import & Export Sri Lanka"
-        description="CMB XPRESS.LK connects Sri Lanka with international destinations through courier, air cargo, import, export and business logistics services. Contact our team for a shipping quotation."
+        title="CMB XPRESS.LK | International Courier from Sri Lanka"
+        description="Send parcels, documents and business shipments from Sri Lanka to international destinations with CMB XPRESS.LK. Request a courier quotation."
         path="/"
       />
 
-      {/* Executive Hero + Real Geography Interactive World Map */}
-      <section className="relative bg-[#111111] text-white overflow-hidden border-b border-neutral-800">
-        <SeasonalSnowfall active={seasonalActive} />
-
-        {/* Subtle atmospheric lighting */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-28 -right-24 w-96 h-96 rounded-full bg-[#B5121B]/18 blur-3xl"
-        />
-        {seasonalActive && (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 left-1/4 w-80 h-64 rounded-full bg-[#D4AF37]/10 blur-3xl"
-          />
-        )}
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
-            {/* Hero Editorial Copy */}
+      <main>
+        {/* Export-led hero */}
+        <section className="relative isolate overflow-hidden bg-[#F8F8F8]">
+          {seasonalEnabled && <SeasonalSnowfall active={seasonalEnabled} />}
+          <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-48 h-[34rem] w-[34rem] rounded-full border border-[#B5121B]/10" />
+          <div className="relative mx-auto grid max-w-7xl items-center gap-9 px-4 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-12 lg:px-8 lg:py-16">
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 space-y-6"
+              transition={{ duration: 0.55, ease: [0.2, 0.7, 0.2, 1] }}
+              className="relative z-10"
             >
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-                  {seasonalActive
-                    ? companyConfig.seasonalCampaign.label
-                    : `${companyConfig.companyName} · ${companyConfig.parentCompany}`}
-                </p>
-
-                {companyConfig.seasonalCampaign.enabled && (
-                  <button
-                    type="button"
-                    onClick={() => setSeasonalActive((prev) => !prev)}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-300 hover:text-white border border-neutral-700 rounded-md px-2.5 py-1 transition-colors cursor-pointer whitespace-nowrap shrink-0"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                    <span>{seasonalActive ? 'Christmas Theme: On' : 'Christmas Theme: Off'}</span>
-                  </button>
-                )}
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#B5121B]/15 bg-white px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-[#B5121B]">
+                <Plane className="h-3.5 w-3.5" />
+                INTERNATIONAL COURIER FROM SRI LANKA
               </div>
 
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.08] text-white">
-                {seasonalActive
-                  ? companyConfig.seasonalCampaign.headline
-                  : 'Sri Lanka’s International Courier & Trade Partner.'}
+              <h1 className="max-w-xl text-[2.65rem] font-semibold leading-[1.06] tracking-[-0.045em] text-[#111111] sm:text-5xl lg:text-[3.65rem]">
+                Sri Lanka to <span className="text-[#B5121B]">the world.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-xl">
-                {seasonalActive
-                  ? `${companyConfig.seasonalCampaign.supportingLine} Export parcels and commercial cargo from Sri Lanka to ${companyConfig.internationalCoverageCount}+ countries, or import from India (Chennai warehouse), China, UAE, Thailand, and Malaysia.`
-                  : `Connecting Sri Lanka to ${companyConfig.internationalCoverageCount}+ global destinations through express international courier, air export, imports from India, China, UAE, Thailand & Malaysia, and FCL sea freight.`}
+              <p className="mt-5 max-w-lg text-[15px] leading-7 text-[#5D5A58] sm:text-base">
+                Send parcels, documents and business shipments overseas with CMB XPRESS.LK.
               </p>
 
-              {/* Primary Actions */}
-              <div className="flex flex-wrap items-center gap-3 pt-1">
-                <Link
-                  to="/quote"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-[#B5121B] rounded-md hover:bg-[#910D14] transition-colors whitespace-nowrap shrink-0"
-                >
-                  <span>Get a Free Quote</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a
-                  href={buildWhatsAppLink(
-                    `Hello ${companyConfig.companyName}, I would like to request a shipping quotation.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-[#111111] bg-white rounded-md hover:bg-neutral-100 transition-colors whitespace-nowrap shrink-0"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#B5121B]" />
-                  <span>Chat on WhatsApp</span>
-                </a>
-                <Link
-                  to="/track"
-                  className="inline-flex items-center gap-1.5 px-3 py-3.5 text-sm font-medium text-neutral-200 hover:text-white underline-offset-4 hover:underline whitespace-nowrap shrink-0"
-                >
-                  <span>Track Assistance</span>
-                </Link>
-              </div>
-
-              {/* Clean Typographic Metadata */}
-              <div className="pt-4 border-t border-neutral-800 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-400">
-                <span className="text-neutral-200 font-medium">
-                  Powered by {companyConfig.parentCompany}
-                </span>
-                <span aria-hidden="true">·</span>
-                <span>{companyConfig.internationalCoverageCount}+ Destinations</span>
-                <span aria-hidden="true">·</span>
-                <span>Wattala, Sri Lanka Hub</span>
-              </div>
-            </motion.div>
-
-            {/* Interactive Real World Route Map with Animated Country Flags */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 space-y-3"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs text-neutral-400 hidden sm:inline">
-                  Hover or select any country flag to inspect active air routes
-                </span>
-                <div className="flex items-center gap-1.5 ml-auto">
-                  {(
-                    [
-                      { id: 'both', label: 'All Corridors' },
-                      { id: 'export', label: 'Export Only' },
-                      { id: 'import', label: 'Import Only' },
-                    ] as const
-                  ).map((tab) => (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      onClick={() => setMapFilter(tab.id)}
-                      className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
-                        mapFilter === tab.id
-                          ? 'bg-[#B5121B] text-white'
-                          : 'bg-neutral-900 text-neutral-300 border border-neutral-800 hover:text-white'
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <GlobalRouteMap activeDirection={mapFilter} />
-            </motion.div>
-          </div>
-
-          {/* 4-Column Operations KPI Strip Below Hero Split */}
-          <div className="mt-12 pt-8 border-t border-neutral-800/90 grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">
-                {companyConfig.internationalCoverageCount}+
-              </div>
-              <div className="mt-1 text-xs text-neutral-400">
-                Global export countries connected from Sri Lanka
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">
-                3–5 Days*
-              </div>
-              <div className="mt-1 text-xs text-neutral-400">
-                Express air courier transit across key destinations
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-extrabold text-white">
-                <CountryFlag code="IN" className="w-5 h-3.5" title="India" />
-                <CountryFlag code="CN" className="w-5 h-3.5" title="China" />
-                <CountryFlag code="AE" className="w-5 h-3.5" title="UAE" />
-                <CountryFlag code="TH" className="w-5 h-3.5" title="Thailand" />
-                <CountryFlag code="MY" className="w-5 h-3.5" title="Malaysia" />
-              </div>
-              <div className="mt-1.5 text-xs text-neutral-400">
-                Own Chennai India hub (Air &amp; Sea) plus Air Cargo from China, UAE, Thailand &amp; Malaysia
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">
-                Sea / FCL
-              </div>
-              <div className="mt-1 text-xs text-neutral-400">
-                Dedicated Full Container Load commercial ocean division
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Two Core Commercial Directions: Export & Import With Editorial Photography */}
-      <section className="py-16 sm:py-20 bg-[#F8F8F8] border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-10">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#B5121B]">
-              Two-Way International Logistics
-            </p>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
-              Built for Exports Out of Sri Lanka &amp; Imports Into Sri Lanka
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            {/* Export Pillar */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white border border-neutral-200 rounded-xl overflow-hidden flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative aspect-[16/9] bg-neutral-900 overflow-hidden">
-                  <img
-                    src={airCargoExportImg}
-                    alt="Wide-body air cargo freighter loading international export containers on airport tarmac"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-[#111111]/85 via-[#111111]/25 to-transparent"
-                  />
-                  <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between gap-4 text-white">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-                      01. Export · Sri Lanka to the World
-                    </span>
-                    <PlaneTakeoff className="w-5 h-5 text-white shrink-0" />
-                  </div>
-                </div>
-
-                <div className="p-7 sm:p-8">
-                  <h3 className="text-2xl font-bold text-[#111111]">
-                    International Courier &amp; Air Export
-                  </h3>
-                  <p className="mt-3 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                    Send urgent documents, family gifts, personal parcels, e-commerce orders, and commercial air cargo from Sri Lanka to {companyConfig.internationalCoverageCount}+ countries worldwide with customs and packaging support.
-                  </p>
-
-                  <div className="mt-6 pt-5 border-t border-neutral-100">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
-                      Key Export Destinations
-                    </p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2.5">
-                      {companyConfig.exportDestinations.map((dest) => {
-                        const code = getCountryCodeFromName(dest);
-                        return (
-                          <div
-                            key={dest}
-                            className="flex items-center gap-2 text-xs font-semibold text-[#111111]"
-                          >
-                            {code && (
-                              <CountryFlag
-                                code={code}
-                                className="w-4 h-2.5 rounded-[1.5px]"
-                                title={dest}
-                              />
-                            )}
-                            <span className="truncate">{dest}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="px-7 sm:px-8 pb-7 sm:pb-8 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/export"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-[#B5121B] rounded-md hover:bg-[#910D14] transition-colors whitespace-nowrap shrink-0"
-                >
-                  <span>Explore Export Services</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row">
                 <Link
                   to="/quote?direction=export"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold text-[#111111] border border-neutral-300 rounded-md hover:bg-[#F8F8F8] transition-colors whitespace-nowrap shrink-0"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#B5121B] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(181,18,27,0.16)] transition hover:-translate-y-0.5 hover:bg-[#970F17] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B5121B]"
                 >
-                  <span>Export Quote</span>
+                  Get a courier quote <ArrowRight className="h-4 w-4" />
                 </Link>
+                <a
+                  href={buildWhatsAppLink('Hello CMB XPRESS.LK, I would like a courier quotation from Sri Lanka.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[#D8D3CF] bg-white px-5 py-3 text-sm font-semibold text-[#222222] transition hover:border-[#B5121B] hover:text-[#B5121B]"
+                >
+                  <MessageCircle className="h-4 w-4 text-[#B5121B]" />
+                  Chat on WhatsApp
+                </a>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[#77716B]">
+                <span className="font-semibold text-[#333333]">Your International Courier Partner</span>
+                <span aria-hidden="true">·</span>
+                <span>Wattala, Sri Lanka</span>
               </div>
             </motion.div>
 
-            {/* Import Pillar */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white border border-neutral-200 rounded-xl overflow-hidden flex flex-col justify-between"
+              initial={{ opacity: 0, scale: 0.985 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.08 }}
+              className="relative min-w-0"
             >
-              <div>
-                <div className="relative aspect-[16/9] bg-neutral-900 overflow-hidden">
-                  <img
-                    src={importWarehouseImg}
-                    alt="International air-freight consolidation warehouse handling wrapped commercial cargo pallets"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-[#111111]/85 via-[#111111]/25 to-transparent"
-                  />
-                  <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between gap-4 text-white">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-                      02. Import · Overseas Suppliers to Sri Lanka
-                    </span>
-                    <PlaneLanding className="w-5 h-5 text-[#D4AF37] shrink-0" />
-                  </div>
+              <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[#211A18] shadow-[0_24px_70px_rgba(25,20,17,0.18)] sm:aspect-[16/10] lg:aspect-[1.18/1]">
+                <img
+                  src={exportImage}
+                  alt="International air cargo prepared for shipment from Sri Lanka"
+                  fetchPriority="high"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#100E0D]/70 via-transparent to-[#100E0D]/5" />
+                <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-white/90 px-3 py-2 text-[11px] font-semibold text-[#8E1119] shadow-lg sm:left-6 sm:top-6">
+                  {seasonalEnabled ? '🎄 Christmas sending season' : 'International dispatch'}
                 </div>
 
-                <div className="p-7 sm:p-8">
-                  <h3 className="text-2xl font-bold text-[#111111]">
-                    India, China, UAE, Thailand &amp; Malaysia Imports
-                  </h3>
-                  <p className="mt-3 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                    Structured import corridors into Sri Lanka: our own warehouse in Chennai handling both Air Cargo and Sea Freight from India, plus scheduled Air Cargo from China, UAE, Thailand, and Malaysia.
-                  </p>
+                <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 700 500" fill="none" aria-hidden="true">
+                  <motion.path
+                    d="M82 330 C190 180 320 405 450 230 S590 130 650 98"
+                    stroke="#F8D98B"
+                    strokeWidth="2"
+                    strokeDasharray="7 9"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.9 }}
+                    transition={{ duration: 2.2, delay: 0.5 }}
+                  />
+                  <motion.circle
+                    cx="650"
+                    cy="98"
+                    r="7"
+                    fill="#F8D98B"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: [0, 1, 1.15, 1] }}
+                    transition={{ duration: 0.8, delay: 2.4 }}
+                  />
+                </svg>
 
-                  <div className="mt-6 pt-5 border-t border-neutral-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <Link
-                        to="/import#india"
-                        className="inline-flex items-center gap-2 text-sm font-bold text-[#B5121B] hover:underline"
-                      >
-                        <CountryFlag code="IN" className="w-5 h-3.5" title="India" />
-                        <span>India · Chennai Hub (Air &amp; Sea) →</span>
-                      </Link>
-                      <p className="text-xs text-neutral-600 mt-1">
-                        Own Chennai warehouse supporting both Air Cargo and Sea Freight.
-                      </p>
+                {seasonalEnabled && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.65, duration: 0.5 }}
+                    className="absolute bottom-4 right-4 flex items-center gap-3 rounded-xl border border-white/40 bg-white/95 p-3 shadow-xl sm:bottom-6 sm:right-6 sm:p-4"
+                  >
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-[#B5121B] text-white">
+                      <Gift className="h-6 w-6" />
                     </div>
                     <div>
-                      <Link
-                        to="/import#china"
-                        className="inline-flex items-center gap-2 text-sm font-bold text-[#111111] hover:text-[#B5121B] hover:underline"
-                      >
-                        <CountryFlag code="CN" className="w-5 h-3.5" title="China" />
-                        <span>China Air Cargo →</span>
-                      </Link>
-                      <p className="text-xs text-neutral-600 mt-1">
-                        Supplier pickup, consolidation, customs &amp; duty-paid options.
-                      </p>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#B5121B]">Christmas dispatch</p>
+                      <p className="mt-0.5 text-sm font-semibold text-[#171717]">Send a little happiness.</p>
                     </div>
-                    <div>
-                      <Link
-                        to="/import#uae"
-                        className="inline-flex items-center gap-2 text-sm font-bold text-[#111111] hover:text-[#B5121B] hover:underline"
-                      >
-                        <CountryFlag code="AE" className="w-5 h-3.5" title="UAE" />
-                        <span>UAE Air Cargo →</span>
-                      </Link>
-                      <p className="text-xs text-neutral-600 mt-1">
-                        Direct Dubai / UAE commercial &amp; parcel air imports.
-                      </p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                        <Link
-                          to="/import#thailand"
-                          className="inline-flex items-center gap-1.5 text-sm font-bold text-[#111111] hover:text-[#B5121B] hover:underline"
-                        >
-                          <CountryFlag code="TH" className="w-4 h-2.5" title="Thailand" />
-                          <span>Thailand</span>
-                        </Link>
-                        <Link
-                          to="/import#malaysia"
-                          className="inline-flex items-center gap-1.5 text-sm font-bold text-[#111111] hover:text-[#B5121B] hover:underline"
-                        >
-                          <CountryFlag code="MY" className="w-4 h-2.5" title="Malaysia" />
-                          <span>Malaysia</span>
-                        </Link>
-                      </div>
-                      <p className="text-xs text-neutral-600">
-                        Scheduled Air Cargo imports into Sri Lanka with clearance support.
-                      </p>
-                    </div>
-                  </div>
+                  </motion.div>
+                )}
+
+                <div className="absolute bottom-5 left-5 text-white sm:bottom-7 sm:left-7">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#F8D98B]">From Sri Lanka</p>
+                  <p className="mt-1 text-lg font-semibold tracking-tight sm:text-xl">Ready for the world.</p>
                 </div>
-              </div>
-
-              <div className="px-7 sm:px-8 pb-7 sm:pb-8 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/import"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-[#111111] rounded-md hover:bg-neutral-800 transition-colors whitespace-nowrap shrink-0"
-                >
-                  <span>Explore Import Solutions</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/sea-freight"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold text-[#111111] border border-neutral-300 rounded-md hover:bg-[#F8F8F8] transition-colors whitespace-nowrap shrink-0"
-                >
-                  <Anchor className="w-4 h-4 text-[#B5121B]" />
-                  <span>Separate Sea Freight / FCL</span>
-                </Link>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Indicative Service Tiers */}
-      <section className="py-16 sm:py-20 bg-white border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#B5121B]">
-                Air Courier Service Levels
-              </p>
-              <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
-                Express, Standard &amp; Economy Shipping Tiers
-              </h2>
-            </div>
-            <Link
-              to="/international-courier"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#B5121B] hover:text-[#111111] whitespace-nowrap"
-            >
-              <span>View Courier Details</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <ServiceTierComparison direction="export" />
-        </div>
-      </section>
-
-      {/* Authentic Operations & Facility Gallery */}
-      <section className="py-16 sm:py-20 bg-[#F8F8F8] border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
-            <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
-              <BrandLogo variant="about" className="self-start p-2 border border-neutral-200" />
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
-                Delivering Excellence, Connecting Sri Lanka to the World
-              </h2>
-              <p className="text-base text-neutral-600 leading-relaxed">
-                Officially registered in Sri Lanka and powered by{' '}
-                <strong className="text-[#111111]">{companyConfig.parentCompany}</strong> since{' '}
-                {companyConfig.establishedYear}, {companyConfig.companyName} operates from our Wattala logistics hub to serve individuals, online retailers, and SMEs across Sri Lanka.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                {[
-                  {
-                    icon: ShieldCheck,
-                    title: 'Customs & Compliance',
-                    desc: 'In-house guidance on documentation, duties, and export/import compliance.',
-                  },
-                  {
-                    icon: Box,
-                    title: 'Protective Packaging',
-                    desc: 'Secure carton prep and vacuum-sealed packing for sensitive items.',
-                  },
-                  {
-                    icon: Globe2,
-                    title: `${companyConfig.internationalCoverageCount}+ Global Markets`,
-                    desc: 'Connected courier and air cargo networks across key trade lanes.',
-                  },
-                  {
-                    icon: Package,
-                    title: 'Direct Human Support',
-                    desc: 'Accessible Wattala coordination team via phone and WhatsApp.',
-                  },
-                ].map((item, idx) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.4, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                    className="bg-white border border-neutral-200 rounded-lg p-4"
-                  >
-                    <item.icon className="w-5 h-5 text-[#B5121B]" />
-                    <h3 className="mt-2.5 text-sm font-bold text-[#111111]">{item.title}</h3>
-                    <p className="mt-1 text-xs text-neutral-600 leading-relaxed">{item.desc}</p>
-                  </motion.div>
-                ))}
+        {/* Trust strip */}
+        <section className="border-b border-[#EEEAE6] bg-white">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-5 sm:px-6 lg:grid-cols-4 lg:px-8">
+            {[
+              { icon: Globe2, value: companyConfig.internationalCoverageCount + '+', label: 'Destinations' },
+              { icon: Package, value: 'Parcels', label: 'Personal & business' },
+              { icon: MessageCircle, value: 'Real people', label: 'Helpful support' },
+              { icon: ShieldCheck, value: 'Clear quotes', label: 'Before you ship' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#F9EEEE] text-[#B5121B]">
+                  <item.icon className="h-[18px] w-[18px]" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-[#222222]">{item.value}</span>
+                  <span className="mt-0.5 block text-xs text-[#77716B]">{item.label}</span>
+                </span>
               </div>
-
-              <div className="pt-2">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#B5121B] hover:text-[#111111]"
-                >
-                  <span>Read About {companyConfig.companyName}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Editorial Visual Bento Showcase */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5 items-stretch">
-              <div className="sm:col-span-2 rounded-xl overflow-hidden border border-neutral-200 bg-white relative aspect-[16/9]">
-                <img
-                  src={courierDispatchHubImg}
-                  alt="Modern express courier sorting and staging hub with sealed export cartons"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-[#111111]/75 via-transparent to-transparent"
-                />
-                <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between text-white text-xs">
-                  <span className="font-semibold uppercase tracking-wider text-[#D4AF37]">
-                    Wattala Dispatch Operations
-                  </span>
-                  <span className="text-neutral-200">Protective Packaging &amp; Staging</span>
-                </div>
-              </div>
-
-              <div className="rounded-xl overflow-hidden border border-neutral-200 bg-white aspect-[4/3]">
-                <img
-                  src={parcelLabelImg}
-                  alt="CMB XPRESS.LK team member applying priority air cargo shipping label onto branded carton"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="rounded-xl overflow-hidden border border-neutral-200 bg-white aspect-[4/3]">
-                <img
-                  src={courierHandoverImg}
-                  alt="CMB XPRESS.LK courier specialist handing over export parcels"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Complete Capabilities Grid + Dedicated Sea Freight / FCL Feature */}
-      <section className="py-16 sm:py-20 bg-white border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#B5121B]">
-              Service Portfolio
-            </p>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#111111]">
-              End-to-End Courier, Air Cargo &amp; Ocean Freight
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coreServices.map((service, index) => (
-              <motion.div
-                key={service.slug}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.45,
-                  delay: (index % 3) * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="flex"
-              >
-                <Link
-                  to={service.to}
-                  className="group w-full bg-white border border-neutral-200 rounded-xl p-6 hover:border-[#B5121B] transition-colors flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-neutral-500">
-                      <span className="font-semibold text-[#B5121B]">
-                        0{index + 1}. {service.direction}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-[#B5121B] transition-colors" />
-                    </div>
-                    <h3 className="mt-3 text-lg font-bold text-[#111111] group-hover:text-[#B5121B] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-neutral-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <ul className="mt-5 pt-4 border-t border-neutral-100 space-y-2">
-                    {service.highlights.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs text-neutral-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#B5121B] shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Link>
-              </motion.div>
             ))}
           </div>
+        </section>
 
-          {/* Dedicated Ocean Freight Visual Feature Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#111111] text-white rounded-xl overflow-hidden border border-neutral-800 grid grid-cols-1 lg:grid-cols-12 items-stretch"
-          >
-            <div className="lg:col-span-6 relative aspect-[16/9] lg:aspect-auto min-h-[260px]">
-              <img
-                src={oceanFclPortImg}
-                alt="International container port terminal handling Full Container Load FCL ocean shipments"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#111111]/80 hidden lg:block"
-              />
-            </div>
-
-            <div className="lg:col-span-6 p-7 sm:p-10 flex flex-col justify-center space-y-5">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-                <Anchor className="w-4 h-4" />
-                <span>Separate Ocean Freight Division</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                Full Container Load (FCL) Sea Freight Coordination
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-                Alongside our Air &amp; Sea hub in Chennai, India and Air Cargo corridors from China, UAE, Thailand, and Malaysia, our dedicated Sea Freight / FCL division coordinates container quotations, documentation, port clearance, and inland delivery across Sri Lanka.
-              </p>
-              <div className="pt-1 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/sea-freight"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-[#B5121B] rounded-md hover:bg-[#910D14] transition-colors whitespace-nowrap shrink-0"
-                >
-                  <span>Explore Sea Freight / FCL</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/quote?direction=import&service=Sea%20Freight%20%2F%20FCL"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white border border-neutral-700 rounded-md hover:bg-neutral-800 transition-colors whitespace-nowrap shrink-0"
-                >
-                  <span>Request FCL Quote</span>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Authentic Google Maps Reviews & FAQ Preview */}
-      <section className="py-16 sm:py-20 bg-[#F8F8F8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          {/* Original Google Maps Reviews Only */}
-          <GoogleReviewsSection />
-
-          {/* FAQ Highlights */}
-          <div className="bg-white border border-neutral-200 rounded-xl p-7 sm:p-10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        {/* Destinations */}
+        <section id="destinations" className="scroll-mt-24 bg-white py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#B5121B]">
-                  Common Questions
-                </p>
-                <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-[#111111]">
-                  Shipping, Customs &amp; Import Answers
-                </h2>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B5121B]">International delivery</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#171717] sm:text-3xl">Where would you like to send?</h2>
               </div>
-              <Link
-                to="/faq"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#B5121B] hover:text-[#111111] whitespace-nowrap"
-              >
-                <span>View All FAQs</span>
-                <ArrowRight className="w-4 h-4" />
+              <p className="max-w-sm text-sm leading-6 text-[#77716B]">Choose a destination to start your courier enquiry.</p>
+            </div>
+            <div className="mt-7 grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:grid-cols-8">
+              {destinations.map((item) => (
+                <Link
+                  key={item.name}
+                  to={'/quote?direction=export&destination=' + encodeURIComponent(item.name)}
+                  className="group flex min-h-[88px] flex-col items-center justify-center rounded-xl border border-[#ECE8E3] bg-[#FCFBFA] px-2 py-3 text-center transition hover:-translate-y-0.5 hover:border-[#DDB5B7] hover:bg-white hover:shadow-sm"
+                >
+                  <span className="text-2xl leading-none" aria-hidden="true">{item.flag}</span>
+                  <span className="mt-2 text-xs font-medium text-[#34302D] group-hover:text-[#B5121B]">{item.name === 'United States' ? 'USA' : item.name}</span>
+                </Link>
+              ))}
+            </div>
+            <p className="mt-4 text-[11px] leading-5 text-[#918A83]">Destination and service availability are confirmed when you request a quotation.</p>
+          </div>
+        </section>
+
+        {/* Courier services */}
+        <section id="services" className="scroll-mt-24 bg-[#F8F8F7] py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B5121B]">Courier services</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#171717] sm:text-3xl">Ship what matters.</h2>
+              </div>
+              <Link to="/services" className="hidden items-center gap-1 text-sm font-semibold text-[#B5121B] hover:underline sm:inline-flex">
+                All services <ChevronRight className="h-4 w-4" />
               </Link>
             </div>
+            <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {services.map((service, index) => (
+                <motion.article
+                  key={service.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="group overflow-hidden rounded-xl border border-[#EAE6E1] bg-white transition hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(30,24,20,0.08)]"
+                >
+                  <div className="aspect-[16/10] overflow-hidden bg-[#EDE9E4]">
+                    <img src={service.image} alt={service.alt} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]" />
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 text-[#B5121B]">
+                      <service.icon className="h-4 w-4" />
+                      <h3 className="text-base font-semibold tracking-tight text-[#1C1A18]">{service.title}</h3>
+                    </div>
+                    <p className="mt-2 min-h-[42px] text-sm leading-6 text-[#77716B]">{service.description}</p>
+                    <Link to={service.href} className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#B5121B]">
+                      Explore service <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+            <div className="mt-6 sm:hidden">
+              <Link to="/services" className="inline-flex items-center gap-1 text-sm font-semibold text-[#B5121B]">Explore all services <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+          </div>
+        </section>
 
-            <div className="divide-y divide-neutral-200">
-              {faqs.slice(0, 4).map((item) => (
-                <div key={item.question} className="py-5 first:pt-0 last:pb-0">
-                  <h3 className="text-base font-bold text-[#111111]">{item.question}</h3>
-                  <p className="mt-1.5 text-sm text-neutral-600 leading-relaxed">{item.answer}</p>
+        {/* How it works */}
+        <section className="bg-white py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B5121B]">Simple steps</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#171717] sm:text-3xl">From your door to their door.</h2>
+              <p className="mt-3 text-sm leading-6 text-[#77716B]">Our team helps you through each step of the shipment.</p>
+            </div>
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {steps.map((step, index) => (
+                <div key={step.number} className="relative border-l-2 border-[#E9C9CA] pl-5 sm:border-l-0 sm:border-t-2 sm:pl-0 sm:pt-5">
+                  <span className="absolute -left-[9px] top-0 grid h-4 w-4 place-items-center rounded-full border-4 border-white bg-[#B5121B] sm:-top-[9px] sm:left-0" />
+                  <div className="flex items-center gap-3 sm:block">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-[#F9EEEE] text-[#B5121B]">
+                      <step.icon className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="text-[10px] font-semibold tracking-[0.14em] text-[#B5121B]">{step.number}</p>
+                      <h3 className="mt-1 text-sm font-semibold text-[#222222]">{step.title}</h3>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-[#77716B] sm:mt-3">{step.copy}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Seasonal Christmas campaign */}
+        {seasonalEnabled && (
+          <section className="px-4 pb-14 sm:px-6 sm:pb-16 lg:px-8">
+            <div className="relative mx-auto max-w-7xl overflow-hidden rounded-2xl bg-[#8F1119] px-6 py-9 text-white sm:px-10 sm:py-12">
+              <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full border border-white/10 shadow-[0_0_0_26px_rgba(255,255,255,0.025),0_0_0_60px_rgba(255,255,255,0.02)]" />
+              <SeasonalSnowfall active={seasonalEnabled} />
+              <div className="relative flex flex-col justify-between gap-7 sm:flex-row sm:items-center">
+                <div className="max-w-xl">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#F5D891]">Christmas 2026 · International courier</p>
+                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">Send a little happiness home.</h2>
+                  <p className="mt-3 max-w-md text-sm leading-6 text-white/80">Make this Christmas special with parcels and gifts sent from Sri Lanka.</p>
+                </div>
+                <Link to="/quote?direction=export" className="relative inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-[#8F1119] transition hover:bg-[#FFF6E6]">
+                  Get your Christmas quote <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <div aria-hidden="true" className="pointer-events-none absolute bottom-[-22px] right-[17%] hidden rotate-[-8deg] sm:block">
+                <div className="relative h-20 w-24 rounded-md border border-[#D5A43A] bg-[#B5121B] shadow-2xl">
+                  <div className="absolute left-1/2 top-0 h-full w-3 -translate-x-1/2 bg-[#D4AF37]" />
+                  <div className="absolute left-0 top-1/2 h-3 w-full -translate-y-1/2 bg-[#D4AF37]" />
+                  <div className="absolute -top-5 left-1/2 h-7 w-12 -translate-x-1/2 rounded-full border-[5px] border-[#D4AF37]" />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Import is secondary */}
+        <section className="bg-[#F8F8F7] py-14 sm:py-16">
+          <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+            <div className="overflow-hidden rounded-xl">
+              <img src={importImage} alt="International import cargo being handled at a logistics warehouse" loading="lazy" className="aspect-[16/10] h-full w-full object-cover" />
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B5121B]">Also available</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#171717] sm:text-3xl">Import into Sri Lanka.</h2>
+              <p className="mt-3 max-w-lg text-sm leading-6 text-[#77716B]">Bring cargo from international suppliers with support from CMB XPRESS.LK.</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="rounded-full border border-[#E7D5D2] bg-white px-3 py-2 text-xs font-medium text-[#4B403D]">🇨🇳 China air cargo</span>
+                <span className="rounded-full border border-[#E7D5D2] bg-white px-3 py-2 text-xs font-medium text-[#4B403D]">🇹🇭 Thailand imports</span>
+                <span className="rounded-full border border-[#E7D5D2] bg-white px-3 py-2 text-xs font-medium text-[#4B403D]">Sea freight / FCL</span>
+              </div>
+              <Link to="/import" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#B5121B] hover:underline">
+                Explore import services <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="bg-white py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B5121B]">Need a hand?</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#171717] sm:text-3xl">A few quick answers.</h2>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#77716B]">Still have a question? Our team is happy to help.</p>
+                <a href={buildWhatsAppLink('Hello CMB XPRESS.LK, I have a question about international courier services.')} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#B5121B]">
+                  Ask us on WhatsApp <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="divide-y divide-[#EEEAE6] border-y border-[#EEEAE6]">
+                {faqs.map((faq) => (
+                  <details key={faq.question} className="group py-4">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-[#292522] marker:hidden">
+                      {faq.question}
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#F8EEEE] text-[#B5121B] transition group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="mt-3 max-w-2xl pr-8 text-sm leading-6 text-[#77716B]">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="bg-[#F7F2EC] py-12 sm:py-14">
+          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B5121B]">Your next shipment starts here</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#171717] sm:text-3xl">Where are you sending?</h2>
+              <p className="mt-2 text-sm text-[#77716B]">Tell us your destination. We’ll help with the next step.</p>
+            </div>
+            <div className="flex flex-col gap-3 min-[420px]:flex-row">
+              <Link to="/quote?direction=export" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#B5121B] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#970F17]">
+                Request a quote <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a href={buildWhatsAppLink('Hello CMB XPRESS.LK, I would like help with an international shipment from Sri Lanka.')} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[#D6CCC2] bg-white px-5 py-3 text-sm font-semibold text-[#2A2521]">
+                <MessageCircle className="h-4 w-4 text-[#B5121B]" /> WhatsApp us
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
